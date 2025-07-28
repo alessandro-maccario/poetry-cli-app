@@ -1,0 +1,1 @@
+A small poetry cli app: the main goal is to run the cli poetry app instead of manually running all the commands in order to create a poetry environment.
