@@ -13,6 +13,9 @@ dependencies = [
 [tool.poetry]
 packages = [{include = "poetry_cli_app", from = "src"}]
 
+[tool.poetry.scripts]
+poetry_cli_app = "poetry_cli_app.cli:cli"
+
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
