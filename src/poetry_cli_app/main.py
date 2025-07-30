@@ -15,7 +15,7 @@ import os
 ############
 
 
-def create_new_poetry_folder(folder_destination: str, folder_name: str):
+def poetry_env(folder_destination: str, folder_name: str):
     """Run poetry commands to create a new poetry folder in a specified location
 
     Parameters
@@ -81,7 +81,7 @@ if "__name__" == "__main__":
         "Set the path to the newly created poetry folder:\n"
     )
     poetry_folder_name = input("Folder name:\n")
-    create_new_poetry_folder(
+    poetry_env(
         folder_destination=path_to_new_poetry_folder,
         folder_name=f"{poetry_folder_name}",
     )
