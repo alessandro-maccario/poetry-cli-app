@@ -7,6 +7,7 @@ Use it as a new Python interpreter in VS Code.
 ### IMPORT PACKAGES ###
 #######################
 
+import argparse
 import subprocess
 import os
 
@@ -25,19 +26,15 @@ def poetry_env(folder_destination: str, folder_name: str):
 
     Returns
     --------
-        str: _description_
+        str:
+            The environment string to be copied and used in VSCode to activate the environment for the specific project
     """
 
-    # change the directory to the directoy destination first
-    # os.chdir(os.path.abspath(os.path.expanduser(folder_destination)))
-
-    # Step 1: Copy current environment
+    # Remove the current environment before creating a new one
     env = os.environ.copy()
-
-    # Step 2: Remove the VIRTUAL_ENV variable if it exists
+    # Remove the VIRTUAL_ENV variable if it exists
     env.pop("VIRTUAL_ENV", None)
-
-    # Step 3: Clean the PATH (remove anything pointing to .venv/bin or other virtual envs)
+    # Clean the PATH (remove anything pointing to .venv/bin or other virtual envs)
     env["PATH"] = ":".join(
         p for p in env["PATH"].split(":") if ".venv" not in p and "virtualenv" not in p
     )
@@ -51,14 +48,13 @@ def poetry_env(folder_destination: str, folder_name: str):
         encoding="utf-8",
     )
 
-    # check where python3 is
+    # check where python3 is on your system: whereis works on ubuntu, use 'where python' on Windows
     where_is_python = (
         subprocess.check_output("whereis python3", shell=True, encoding="utf-8")
         .split(":")[1]
         .strip()
         .split(" ")[0]
     )
-    # print(where_is_python)
 
     # get the env address to be then used in VS Code
     poetry_env_address = subprocess.run(
@@ -72,16 +68,20 @@ def poetry_env(folder_destination: str, folder_name: str):
         env=env,
     )
 
-    # print the output to console
+    # print the newly creted environment to the console to be able to copy it into VS Code Select Interpreter
     print(poetry_env_address.stdout)
 
 
-if "__name__" == "__main__":
-    path_to_new_poetry_folder = input(
-        "Set the path to the newly created poetry folder:\n"
+def main():
+    # Create a parser
+    parser = argparse.ArgumentParser(description="Create a new Poetry environment.")
+
+    # add the two arguments that we need to define the destination path and the folder name
+    parser.add_argument(
+        "folder_destination", help="Destination path for the new folder"
     )
-    poetry_folder_name = input("Folder name:\n")
-    poetry_env(
-        folder_destination=path_to_new_poetry_folder,
-        folder_name=f"{poetry_folder_name}",
-    )
+    parser.add_argument("folder_name", help="Name of the new project folder")
+
+    # Creat the Namespace where the parameters will be stored. You can call them as args.<parameter_name>
+    args = parser.parse_args()
+    poetry_env(args.folder_destination, args.folder_name)
