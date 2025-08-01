@@ -16,8 +16,9 @@ import os
 ############
 
 
-def poetry_env(folder_destination: str, folder_name: str):
-    """Run poetry commands to create a new poetry folder in a specified location
+def create_new_poetry_env(folder_destination: str, folder_name: str):
+    """Run poetry commands to create a new poetry folder in a specified location and print the new environment name
+    created for it. This can then be used as a new interpreter for your new project in VS Code.
 
     Parameters
     ----------
@@ -84,4 +85,4 @@ def main():
 
     # Creat the Namespace where the parameters will be stored. You can call them as args.<parameter_name>
     args = parser.parse_args()
-    poetry_env(args.folder_destination, args.folder_name)
+    create_new_poetry_env(args.folder_destination, args.folder_name)
