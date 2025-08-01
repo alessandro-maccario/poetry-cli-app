@@ -1,10 +1,62 @@
-A small poetry cli app: the main goal is to run the cli poetry app instead of manually running all the commands in order to create a poetry environment.
+# Poetry CLI App
 
-On `Ubuntu`:
-What you usually do manually to create a poetry environment is as follows (in the CLI):
-1. poetry new <folder-name>
-2. whereis python3
-3. `cd` into the newly created <folder-name> folder and then `poetry env use /usr/bin/python3`. You should then see an output similar to the following: `Creating virtualenv poetry-cli-app-9d0BHpKN-py3.12 in /home/m/.cache/pypoetry/virtualenvs`
-`Using virtualenv: /home/m/.cache/pypoetry/virtualenvs/poetry-cli-app-9d0BHpKN-py3.12`
-4. In VSCode, at this point, you press `CTRL+P`, then `Python: Select Interpreter`, then `Enter Interpreter Path` and you should insert the `path` given in point 3. that is available after the _Using virtualenv:_. It contains the path to the current virtual environment connected to your newly created project folder.
+This is a CLI tool to automatically create a new Poetry-based Python project and Poetry environment — even if you're not inside a virtual environment.
 
+### 📦 1. Install `pipx` (if not already installed - Recommended)
+
+This tool is meant to be used globally via [`pipx`](https://packaging.python.org/en/latest/guides/installing-stand-alone-command-line-tools/), which creates isolated virtual environments for each CLI application and puts them on your system `PATH`.
+
+```bash
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+```
+
+(Restart your terminal or reload your shell config to ensure pipx is available.)
+
+### 2. ⚙️ Build your package
+
+Inside your project folder, run:
+
+```
+poetry build
+```
+
+This will create a .whl and .tar.gz in the dist/ folder.
+
+### 3. 🪛 Install the CLI with pipx
+
+Run:
+```
+pipx install dist/<your-package-name-version>.whl
+```
+
+Example:
+```
+pipx install dist/poetry_cli_app-0.1.0-py3-none-any.whl
+```
+
+### 4. ▶️ Use the CLI
+Once installed, you can run the tool globally from any location:
+
+```
+poetry_cli_app <folder_destination> <folder_name>
+```
+
+Example:
+```
+poetry_cli_app /home/al/dev my-new-poetry-project
+```
+
+### 5. ℹ️ To view usage help:
+
+```
+poetry_cli_app --help
+```
+
+This will show available options and arguments.
+
+### 6. ❌ To remove the package
+
+```
+pipx uninstall poetry_cli_app
+```
