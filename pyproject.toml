@@ -14,7 +14,7 @@ dependencies = [
 packages = [{include = "poetry_cli_app", from = "src"}]
 
 [tool.poetry.scripts]
-poetry_cli_app = "poetry_cli_app.cli:cli"
+poetry_cli_app = "poetry_cli_app.cli:main"
 
 
 [build-system]
