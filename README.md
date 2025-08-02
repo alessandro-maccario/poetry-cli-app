@@ -60,3 +60,8 @@ This will show available options and arguments.
 ```
 pipx uninstall poetry_cli_app
 ```
+
+
+#### References
+ -[Installing stand alone command line tools](https://packaging.python.org/en/latest/guides/installing-stand-alone-command-line-tools/)
+ - [Argparse Tutorial](https://docs.python.org/3/howto/argparse.html)
