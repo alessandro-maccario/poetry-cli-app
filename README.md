@@ -47,7 +47,7 @@ Example:
 poetry_cli_app /home/al/dev my-new-poetry-project
 ```
 
-### 5. ℹ️ To view usage help:
+### 5. ℹ️ View the help:
 
 ```
 poetry_cli_app --help
@@ -55,7 +55,7 @@ poetry_cli_app --help
 
 This will show available options and arguments.
 
-### 6. ❌ To remove the package
+### 6. ❌ Remove the package
 
 ```
 pipx uninstall poetry_cli_app
