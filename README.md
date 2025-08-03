@@ -41,6 +41,14 @@ Example:
 pipx install dist/poetry_cli_app-0.1.0-py3-none-any.whl
 ```
 
+In your terminal, you should now see:
+
+```
+These apps are now globally available
+    - poetry_cli_app
+done! ✨ 🌟 ✨
+```
+
 ### 5. ▶️ Use the CLI
 Once installed, you can run the tool globally from any location:
 
@@ -50,7 +58,7 @@ poetry_cli_app <folder_destination> <folder_name>
 
 Example:
 ```
-poetry_cli_app /home/al/dev my-new-poetry-project
+poetry_cli_app /home/<username>/dev my-new-poetry-project
 ```
 
 ### 6. ℹ️ View the help:
