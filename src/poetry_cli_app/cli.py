@@ -11,6 +11,7 @@ import argparse
 import subprocess
 import os
 
+
 ############
 ### MAIN ###
 ############
@@ -32,6 +33,8 @@ def create_new_poetry_env(folder_destination: str, folder_name: str):
     """
 
     # Remove the current environment before creating a new one
+    # Clearing out the existing Python virtual environment context to ensure that Poetry creates a fresh,
+    # isolated environment for the new project, instead of accidentally reusing an existing one
     env = os.environ.copy()
     # Remove the VIRTUAL_ENV variable if it exists
     env.pop("VIRTUAL_ENV", None)
